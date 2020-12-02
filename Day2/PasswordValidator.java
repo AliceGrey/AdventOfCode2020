@@ -16,7 +16,7 @@ public class PasswordValidator {
 		for(int i=0; i < array.size(); i++)
 		{
 		      Matcher m = r.matcher(array.get(i));
-		      if (m.find() && validatePassword(Integer.parseInt(m.group(1)),
+		      if (m.find() && validatePassword2(Integer.parseInt(m.group(1)),
 		    		  Integer.parseInt(m.group(2)),m.group(3), m.group(4)))
 		    	  validCount++;
 		}
@@ -31,6 +31,14 @@ public class PasswordValidator {
 			return true;
 		return false;
 	}
+	static boolean validatePassword2(int pos1, int pos2, String letter, String password)
+	{
+		if (letter.charAt(0) == password.charAt(pos1-1) && letter.charAt(0) != password.charAt(pos2-1))
+			return true;
+		if (letter.charAt(0) == password.charAt(pos2-1) && letter.charAt(0) != password.charAt(pos1-1))
+			return true;
+		return false;
+	}
 
 
 	public static void main(String[] args) throws IOException 
@@ -39,3 +47,4 @@ public class PasswordValidator {
 		ingestPasswords(lines);
 	}
 }
+
